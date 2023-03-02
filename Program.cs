@@ -4,7 +4,7 @@ namespace idCard.Corporate
 {
     class Program
     {
-        //Method - Get Employees
+        // Method - Get Employees
         static List<string> GetEmployees()
         {
             List<string> employees = new List<string>();
@@ -21,10 +21,20 @@ namespace idCard.Corporate
             }
             return employees;
         }
-        // Create - Print employees method
+        // Print employees method
+        static void PrintEmployees(List<string> employees)
+        {
+            for (int i = 0; i < employees.Count; i++)
+            {
+                //Prints in the console - Employee ID, Full name (First and Last) and Photo Url
+                Console.WriteLine(employees[i]);
+            }
+        }
+        // Main
         static void Main(string[] args)
         {
             List<string> employees = GetEmployees();
+            PrintEmployees(employees);
         }
     }
 }

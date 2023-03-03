@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace idCard.Corporate
 {
@@ -38,8 +39,8 @@ namespace idCard.Corporate
             return employees;
         }
 
-        // Main
-        static void Main(string[] args)
+        // Main - asynchronous
+        async static Task Main(string[] args)
         {
             List<Employee> employees = GetEmployees();
             
@@ -50,7 +51,7 @@ namespace idCard.Corporate
             Util.MakeCSV(employees);
 
             //MakeBadges - method call
-            Util.MakeIdCards(employees);
+            await Util.MakeIdCards(employees);
         }
     }
 }

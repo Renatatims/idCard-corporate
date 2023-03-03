@@ -2,8 +2,11 @@
 using System;
 using System.IO;
 using System.Collections.Generic;
+using System.Net.Http;
 //Import SkiaSharp
 using SkiaSharp;
+//Import Tasks
+using System.Threading.Tasks;
 
 namespace idCard.Corporate
 {
@@ -20,7 +23,7 @@ namespace idCard.Corporate
                 Console.WriteLine(String.Format(template, employees[i].GetId(), employees[i].GetFullName(), employees[i].GetPhotoUrl()));
             }
         }
-        //MakeCSV - static method - generate CSV file with all the employees data
+        // MakeCSV - static method - generate CSV file with all the employees data
         public static void MakeCSV(List<Employee> employees)
         {
             // Check to see if folder exists
@@ -43,15 +46,24 @@ namespace idCard.Corporate
             }
         }
 
-        //MakeBadges - generate the badges template with the employee data
-        public static void MakeIdCards(List<Employee> employees)
+        // MakeIdCards - generate the cards template with the employee data
+        async public static Task MakeIdCards(List<Employee> employees)
         {
-            //Create Image
-            SKImage newImage = SKImage.FromEncodedData(File.OpenRead("id-template.png"));
+            using (HttpClient client = new HttpClient())
+            {
+                for (int i = 0; i < employees.Count; i++)
+                {
+                    //Get Photo Url for each employee - then converting the Stream into a SKImage
+                    SKImage photo = SKImage.FromEncodedData(await client.GetStreamAsync(employees[i].GetPhotoUrl()));
 
-            SKData data = newImage.Encode();
-            //Save image to data directory on a png file
-            data.SaveTo(File.OpenWrite("data/employeeId.png"));
+                    // SKImage template
+                    SKImage template = SKImage.FromEncodedData(File.OpenRead("id-template.png"));
+
+                    SKData data = template.Encode();
+                    //Save image to data directory on a png file
+                    data.SaveTo(File.OpenWrite("data/employeeId.png"));
+                }
+            }
         }
     }
 }

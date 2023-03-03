@@ -2,15 +2,17 @@
 using System;
 using System.IO;
 using System.Collections.Generic;
+//Import SkiaSharp
+using SkiaSharp;
 
 namespace idCard.Corporate
 {
     class Util
     {
-         // PrintEmployees - static method
+        // PrintEmployees - static method
         public static void PrintEmployees(List<Employee> employees)
         {
-             for (int i = 0; i < employees.Count; i++)
+            for (int i = 0; i < employees.Count; i++)
             {
                 //Template spacing information 
                 string template = "{0,-1}\t{1,-5}\t{2}";
@@ -39,6 +41,17 @@ namespace idCard.Corporate
                     }
                 }
             }
+        }
+
+        //MakeBadges - generate the badges template with the employee data
+        public static void MakeIdCards(List<Employee> employees)
+        {
+            //Create Image
+            SKImage newImage = SKImage.FromEncodedData(File.OpenRead("id-template.png"));
+
+            SKData data = newImage.Encode();
+            //Save image to data directory on a png file
+            data.SaveTo(File.OpenWrite("data/employeeId.png"));
         }
     }
 }

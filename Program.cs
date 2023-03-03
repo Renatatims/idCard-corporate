@@ -48,6 +48,9 @@ namespace idCard.Corporate
 
             // MakeCSV - method call
             Util.MakeCSV(employees);
+
+            //MakeBadges - method call
+            Util.MakeIdCards(employees);
         }
     }
 }

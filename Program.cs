@@ -37,22 +37,17 @@ namespace idCard.Corporate
             }
             return employees;
         }
-        // Print employees method
-        static void PrintEmployees(List<Employee> employees)
-        {
-            for (int i = 0; i < employees.Count; i++)
-            {
-                //Template spacing information 
-                string template = "{0,-1}\t{1,-5}\t{2}";
-                //Prints in the console - Employee ID, Full name (First and Last) and Photo Url
-                Console.WriteLine(String.Format(template, employees[i].GetId(), employees[i].GetFullName(), employees[i].GetPhotoUrl()));
-            }
-        }
+
         // Main
         static void Main(string[] args)
         {
             List<Employee> employees = GetEmployees();
-            PrintEmployees(employees);
+            
+            // Print employees method
+            Util.PrintEmployees(employees);
+
+            // MakeCSV - method call
+            Util.MakeCSV(employees);
         }
     }
 }

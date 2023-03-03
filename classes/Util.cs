@@ -49,18 +49,44 @@ namespace idCard.Corporate
         // MakeIdCards - generate the cards template with the employee data
         async public static Task MakeIdCards(List<Employee> employees)
         {
+            // Card - Layout variables - pixel values
+            int CARD_WIDTH = 670;
+            int CARD_HEIGHT = 1045;
+
+            //Employee Photo layout
+            int PHOTO_LEFT_X = 185;
+            int PHOTO_TOP_Y = 215;
+            int PHOTO_RIGHT_X = 485;
+            int PHOTO_BOTTOM_Y = 515;
+
+            // using - instance of HttpClient is disposed after code in the block has run
             using (HttpClient client = new HttpClient())
             {
                 for (int i = 0; i < employees.Count; i++)
                 {
-                    //Get Photo Url for each employee - then converting the Stream into a SKImage
+                    // Get Photo Url for each employee - then converting the Stream into a SKImage
                     SKImage photo = SKImage.FromEncodedData(await client.GetStreamAsync(employees[i].GetPhotoUrl()));
 
-                    // SKImage template
+                    // SKImage template background
                     SKImage template = SKImage.FromEncodedData(File.OpenRead("id-template.png"));
 
-                    SKData data = template.Encode();
-                    //Save image to data directory on a png file
+                    // Card - width and height
+                    SKBitmap card = new SKBitmap(CARD_WIDTH, CARD_HEIGHT);
+
+                    // SKCanvas object - wrapper around the card bitmap - allows direct graphical modifications to the card
+                    SKCanvas canvas = new SKCanvas(card);
+
+                    // SKRectangular - allocates a postion and size on the card
+                    canvas.DrawImage(template, new SKRect(0, 0, CARD_WIDTH, CARD_HEIGHT));
+
+                    // Insert employee photo
+                    canvas.DrawImage(photo, new SKRect(PHOTO_LEFT_X, PHOTO_TOP_Y, PHOTO_RIGHT_X, PHOTO_BOTTOM_Y));
+
+                    // Final Image
+                    SKImage finalImage = SKImage.FromBitmap(card);
+                    SKData data = finalImage.Encode();
+                    
+                    // Save image to data directory on a png file
                     data.SaveTo(File.OpenWrite("data/employeeId.png"));
                 }
             }

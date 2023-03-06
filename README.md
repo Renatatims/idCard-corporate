@@ -1,6 +1,6 @@
 # idCard-corporate
 
-[![License: BSL 1.0](https://img.shields.io/badge/License-BSL%201.0-blue.svg)](https://opensource.org/licenses/BSL-1.0)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 ## Description
 
@@ -8,9 +8,10 @@ The idCard-corporate application uses C# for generating corporate ID cards. This
 
 ## ID Card Preview
 
-<div style="text-align:center">
+<p align="center">
 <img src="assets/images/9876543_badge.png" alt="idCardPreview" width="40%">
-</div>
+</p>
+
 
 ## Table of Contents
 

@@ -1,6 +1,9 @@
 using System;
 using System.Collections.Generic;
 
+//Newtonsoft import
+using Newtonsoft.Json.Linq;
+
 namespace idCard.Corporate
 {
     class EmployeeFetcher
@@ -40,6 +43,8 @@ namespace idCard.Corporate
             }
             return employees;
         }
+
+        //GetFromApi Method
         async public static Task<List<Employee>> GetFromApi()
         {
             List<Employee> employees = new List<Employee>();
@@ -50,7 +55,25 @@ namespace idCard.Corporate
             {
                 //GetStringAsync method - return all information from the below URL as a string
                 string response = await client.GetStringAsync("https://randomuser.me/api/?results=10&nat=us&inc=name,id,picture");
-                Console.Write(response);
+                //Console.Write(response);
+
+                //Parse response
+                JObject json = JObject.Parse(response);
+
+                foreach (JToken token in json.SelectToken("results")!)
+                {
+                    // Parse JSON data
+                    Employee emp = new Employee
+                    (
+                      companyName,
+                      token.SelectToken("name.first")!.ToString(),
+                      token.SelectToken("name.last")!.ToString(),
+                      Int32.Parse(token.SelectToken("id.value")!.ToString().Replace("-", "")),
+                      token.SelectToken("picture.large")!.ToString()
+                    );
+                    employees.Add(emp);
+                }
+
             }
             return employees;
         }

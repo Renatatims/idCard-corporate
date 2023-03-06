@@ -53,14 +53,20 @@ namespace idCard.Corporate
             int CARD_WIDTH = 670;
             int CARD_HEIGHT = 1045;
 
-            //Company Name
-            int COMPANY_NAME_Y = 150;
-
             //Employee Photo layout
             int PHOTO_LEFT_X = 185;
             int PHOTO_TOP_Y = 215;
             int PHOTO_RIGHT_X = 485;
             int PHOTO_BOTTOM_Y = 515;
+
+            //Company Name
+            int COMPANY_NAME_Y = 150;
+
+            //Employee Name
+            int EMPLOYEE_NAME_Y = 610;
+
+            //ID number
+            int EMPLOYEE_ID_Y = 740;
 
             // using - instance of HttpClient is disposed after code in the block has run
             using (HttpClient client = new HttpClient())
@@ -92,10 +98,22 @@ namespace idCard.Corporate
                     paint.Color = SKColors.White;
                     paint.IsStroke = false;
                     paint.TextAlign = SKTextAlign.Center;
-                    paint.Typeface = SKTypeface.FromFamilyName("Arial");
+                    paint.Typeface = SKTypeface.FromFamilyName("Verdana");
                     
                     // Company name
                     canvas.DrawText(employees[i].GetCompanyName(), CARD_WIDTH / 2f, COMPANY_NAME_Y, paint);
+
+                    //Employee Name Properties
+                    paint.Color = SKColors.Black;
+
+                    //Employee Name Draw Text
+                    canvas.DrawText(employees[i].GetFullName(), CARD_WIDTH / 2f, EMPLOYEE_NAME_Y, paint);
+
+                    //ID Properties
+                    paint.Typeface = SKTypeface.FromFamilyName("Tahoma");
+
+                    //ID Draw Text
+                    canvas.DrawText(employees[i].GetId().ToString(), CARD_WIDTH / 2f, EMPLOYEE_ID_Y, paint);
 
                     // Final Image
                     SKImage finalImage = SKImage.FromBitmap(card);

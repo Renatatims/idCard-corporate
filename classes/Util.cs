@@ -120,7 +120,8 @@ namespace idCard.Corporate
                     SKData data = finalImage.Encode();
                     
                     // Save image to data directory on a png file
-                    data.SaveTo(File.OpenWrite("data/employeeId.png"));
+                    string idCard = "data/{0}_badge.png";
+                    data.SaveTo(File.OpenWrite(string.Format(idCard, employees[i].GetId())));
                 }
             }
         }

@@ -9,6 +9,8 @@ namespace idCard.Corporate
         static List<Employee> GetEmployees()
         {
             List<Employee> employees = new List<Employee>();
+            Console.WriteLine("Please enter the company name: ");
+            string companyName = Console.ReadLine() ?? "";
             while (true)
             {
                 //Employee's First Name
@@ -33,7 +35,7 @@ namespace idCard.Corporate
                 string photoUrl = Console.ReadLine() ?? "";
 
                 // Create a new Employee instance
-                Employee currentEmployee = new Employee(firstName, lastName, id, photoUrl);
+                Employee currentEmployee = new Employee(companyName, firstName, lastName, id, photoUrl);
                 employees.Add(currentEmployee);
             }
             return employees;

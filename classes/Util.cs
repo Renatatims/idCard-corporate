@@ -53,6 +53,9 @@ namespace idCard.Corporate
             int CARD_WIDTH = 670;
             int CARD_HEIGHT = 1045;
 
+            //Company Name
+            int COMPANY_NAME_Y = 150;
+
             //Employee Photo layout
             int PHOTO_LEFT_X = 185;
             int PHOTO_TOP_Y = 215;
@@ -81,6 +84,18 @@ namespace idCard.Corporate
 
                     // Insert employee photo
                     canvas.DrawImage(photo, new SKRect(PHOTO_LEFT_X, PHOTO_TOP_Y, PHOTO_RIGHT_X, PHOTO_BOTTOM_Y));
+
+                    //SKPaint object setup - properties
+                    SKPaint paint = new SKPaint();
+                    paint.TextSize = 42.0f;
+                    paint.IsAntialias = true;
+                    paint.Color = SKColors.White;
+                    paint.IsStroke = false;
+                    paint.TextAlign = SKTextAlign.Center;
+                    paint.Typeface = SKTypeface.FromFamilyName("Arial");
+                    
+                    // Company name
+                    canvas.DrawText(employees[i].GetCompanyName(), CARD_WIDTH / 2f, COMPANY_NAME_Y, paint);
 
                     // Final Image
                     SKImage finalImage = SKImage.FromBitmap(card);

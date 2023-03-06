@@ -40,6 +40,20 @@ namespace idCard.Corporate
             }
             return employees;
         }
+        async public static Task<List<Employee>> GetFromApi()
+        {
+            List<Employee> employees = new List<Employee>();
+            Console.WriteLine("Please enter the company name: ");
+            string companyName = Console.ReadLine() ?? "";
+
+            using (HttpClient client = new HttpClient())
+            {
+                //GetStringAsync method - return all information from the below URL as a string
+                string response = await client.GetStringAsync("https://randomuser.me/api/?results=10&nat=us&inc=name,id,picture");
+                Console.Write(response);
+            }
+            return employees;
+        }
     }
 
 }

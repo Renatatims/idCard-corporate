@@ -9,8 +9,13 @@ namespace idCard.Corporate
         async static Task Main(string[] args)
         {
             List<Employee> employees;
-            employees = EmployeeFetcher.GetEmployees();
-            
+
+            /* GetEmployees method call
+            employees = EmployeeFetcher.GetEmployees();*/
+
+            //GetFromApi method call
+            employees = await EmployeeFetcher.GetFromApi();
+
             // Print employees method
             Util.PrintEmployees(employees);
 

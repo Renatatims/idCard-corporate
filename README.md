@@ -9,8 +9,12 @@ The idCard-corporate application uses C# for generating corporate ID cards. This
 ## ID Card Preview
 
 <p align="center">
-<img src="assets/images/9876543_badge.png" alt="idCardPreview Green" width="40%">
-<img src="assets/images/654321_badge.png" alt="idCardPreview Purple" width="40%">
+<img src="assets/images/9876543_badge.png" alt="idCardPreview Green" width="25%">
+<img src="assets/images/654321_badge.png" alt="idCardPreview Purple" width="25%">
+<img src="assets/images/9876544_badge.png" alt="idCardPreview Red" width="25%%">
+<img src="assets/images/9876545_badge.png" alt="idCardPreview Blue" width="25%">
+<img src="assets/images/5123456_badge.png" alt="idCardPreview Yellow" width="25%">
+<img src="assets/images/98765466_badge.png" alt="idCardPreview Gray" width="25%">
 </p>
 
 

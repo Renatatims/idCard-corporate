@@ -74,12 +74,28 @@ namespace idCard.Corporate
             // User's choice - id-template file path:
             switch (templateSelection)
             {
-                case 1: // Green
+                case 1: // template1 - Green
                     templateFilePath = "id-template1.png";
                     break;
 
-                case 2: // Purple
+                case 2: // template2 - Purple
                     templateFilePath = "id-template2.png";
+                    break;
+
+                case 3: // template3 - Red
+                    templateFilePath = "id-template3.png";
+                    break;
+
+                case 4: // template4 - Blue
+                    templateFilePath = "id-template4.png";
+                    break;
+                
+                case 5: // template5 - Yellow
+                    templateFilePath = "id-template5.png";
+                    break;
+                
+                case 6: // template6 - Gray
+                    templateFilePath = "id-template6.png";
                     break;
                     
                 default:

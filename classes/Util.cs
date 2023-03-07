@@ -47,7 +47,7 @@ namespace idCard.Corporate
         }
 
         // MakeIdCards - generate the cards template with the employee data
-        async public static Task MakeIdCards(List<Employee> employees)
+        async public static Task MakeIdCards(List<Employee> employees, int templateSelection)
         {
             // Card - Layout variables - pixel values
             int CARD_WIDTH = 670;
@@ -68,6 +68,25 @@ namespace idCard.Corporate
             //ID number
             int EMPLOYEE_ID_Y = 740;
 
+            // Template file path
+            string templateFilePath;
+
+            // User's choice - id-template file path:
+            switch (templateSelection)
+            {
+                case 1: // Green
+                    templateFilePath = "id-template1.png";
+                    break;
+
+                case 2: // Purple
+                    templateFilePath = "id-template2.png";
+                    break;
+                    
+                default:
+                    throw new ArgumentException("Invalid template selection");
+            }
+
+
             // using - instance of HttpClient is disposed after code in the block has run
             using (HttpClient client = new HttpClient())
             {
@@ -77,7 +96,7 @@ namespace idCard.Corporate
                     SKImage photo = SKImage.FromEncodedData(await client.GetStreamAsync(employees[i].GetPhotoUrl()));
 
                     // SKImage template background
-                    SKImage template = SKImage.FromEncodedData(File.OpenRead("id-template.png"));
+                    SKImage template = SKImage.FromEncodedData(File.OpenRead(templateFilePath));
 
                     // Card - width and height
                     SKBitmap card = new SKBitmap(CARD_WIDTH, CARD_HEIGHT);
@@ -99,7 +118,7 @@ namespace idCard.Corporate
                     paint.IsStroke = false;
                     paint.TextAlign = SKTextAlign.Center;
                     paint.Typeface = SKTypeface.FromFamilyName("Verdana");
-                    
+
                     // Company name
                     canvas.DrawText(employees[i].GetCompanyName(), CARD_WIDTH / 2f, COMPANY_NAME_Y, paint);
 
@@ -118,7 +137,7 @@ namespace idCard.Corporate
                     // Final Image
                     SKImage finalImage = SKImage.FromBitmap(card);
                     SKData data = finalImage.Encode();
-                    
+
                     // Save image to data directory on a png file
                     string idCard = "data/{0}_badge.png";
                     data.SaveTo(File.OpenWrite(string.Format(idCard, employees[i].GetId())));

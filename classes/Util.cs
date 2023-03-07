@@ -75,27 +75,27 @@ namespace idCard.Corporate
             switch (templateSelection)
             {
                 case 1: // template1 - Green
-                    templateFilePath = "./card_templates/id-template1.png";
+                    templateFilePath = "./assets/card_templates/id-template1.png";
                     break;
 
                 case 2: // template2 - Purple
-                    templateFilePath = "./card_templates/id-template2.png";
+                    templateFilePath = "./assets/card_templates/id-template2.png";
                     break;
 
                 case 3: // template3 - Red
-                    templateFilePath = "./card_templates/id-template3.png";
+                    templateFilePath = "./assets/card_templates/id-template3.png";
                     break;
 
                 case 4: // template4 - Blue
-                    templateFilePath = "./card_templates/id-template4.png";
+                    templateFilePath = "./assets/card_templates/id-template4.png";
                     break;
                 
                 case 5: // template5 - Yellow
-                    templateFilePath = "./card_templates/id-template5.png";
+                    templateFilePath = "./assets/card_templates/id-template5.png";
                     break;
                 
                 case 6: // template6 - Gray
-                    templateFilePath = "./card_templates/id-template6.png";
+                    templateFilePath = "./assets/card_templates/id-template6.png";
                     break;
                     
                 default:

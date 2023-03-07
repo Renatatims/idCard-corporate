@@ -44,8 +44,11 @@ dotnet run
 A. the user will be prompt to select an idCard template color:
 
       1 - Green
-
       2 - Purple
+      3 - Red
+      4 - Blue
+      5 - Yellow
+      6 - Gray
 
 B. the user will be prompt to select an option:
 
@@ -67,7 +70,14 @@ B. the user will be prompt to select an option:
 
 ## Features
 
-The ID cards will be saved according to their unique employee ID.
+1. User can decide the color and style of the idCard. 
+2. Manually input the data or generate the idCards through external API.
+2. The ID cards will be saved according to their unique employee ID.
+4. If no photo URL is provided, a default picture will be used:
+
+<p align="center">
+<img src="assets/idCardsPreview/8888_badge.png" alt="idCardPreview Gray" width="25%">
+</p>
 
 ## License
 
@@ -93,7 +103,7 @@ If you have any questions please contact me at:
 - e-mail account: renatatims@gmail.com
 
 ## Credits
-https://learn.microsoft.com/en-us/nuget/consume-packages/install-use-packages-dotnet-cli
-https://learn.microsoft.com/en-us/dotnet/api/skiasharp.skimage?view=skiasharp-2.88
+- https://learn.microsoft.com/en-us/nuget/consume-packages/install-use-packages-dotnet-cli
+- https://learn.microsoft.com/en-us/dotnet/api/skiasharp.skimage?view=skiasharp-2.88
 
 

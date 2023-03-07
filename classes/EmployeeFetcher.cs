@@ -38,7 +38,17 @@ namespace idCard.Corporate
                 string photoUrl = Console.ReadLine() ?? "";
 
                 // Create a new Employee instance
-                Employee currentEmployee = new Employee(companyName, firstName, lastName, id, photoUrl);
+                Employee currentEmployee;
+                if (!string.IsNullOrEmpty(photoUrl))
+                {
+                    currentEmployee = new Employee(companyName, firstName, lastName, id, photoUrl);
+                }
+                // If the user does not input an URL image
+                else
+                {
+                    string defaultProfileImg = "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y&s=200";
+                    currentEmployee = new Employee(companyName, firstName, lastName, id, defaultProfileImg);
+                }
                 employees.Add(currentEmployee);
             }
             return employees;

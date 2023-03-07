@@ -16,6 +16,10 @@ namespace idCard.Corporate
             //Color options:
             Console.WriteLine("\t1 - Green");
             Console.WriteLine("\t2 - Purple");
+            Console.WriteLine("\t3 - Red");
+            Console.WriteLine("\t4 - Blue");
+            Console.WriteLine("\t5 - Yellow");
+            Console.WriteLine("\t6 - Gray");
 
             int templateSelection = int.Parse(Console.ReadLine() ?? "");
 

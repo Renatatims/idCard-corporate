@@ -9,6 +9,14 @@ namespace idCard.Corporate
         async static Task Main(string[] args)
         {
             List<Employee> employees;
+
+            //idCard template selection:
+            Console.WriteLine("Please select an idCard template color:");
+
+            Console.WriteLine("\t1 - Green");
+            Console.WriteLine("\t2 - Purple");
+
+            //idCard generation - manual or get data from API
             Console.WriteLine("Please select an option to generate the idCards:");
 
             Console.WriteLine("\t1 - Manually input employee's data");
@@ -27,7 +35,7 @@ namespace idCard.Corporate
                     // MakeCSV - method call
                     Util.MakeCSV(employees);
 
-                    //MakeBadges - method call
+                    //MakeBadges - method call with selected template
                     await Util.MakeIdCards(employees);
 
                     break;
@@ -42,7 +50,7 @@ namespace idCard.Corporate
                     // MakeCSV - method call
                     Util.MakeCSV(employees);
 
-                    //MakeBadges - method call
+                    //MakeBadges - method call with selected template
                     await Util.MakeIdCards(employees);
 
                     break;
